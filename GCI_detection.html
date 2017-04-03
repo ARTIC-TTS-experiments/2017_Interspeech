@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>GCI detection</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>GCI_detection</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11769,6 +11769,52 @@ div#notebook {
     });
     </script>
     <!-- End of mathjax configuration --></head>
+
+ <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+<style>  /* defined here in case the main.css below cannot be loaded */
+.lev1 {margin-left: 80px}
+.lev2 {margin-left: 100px}
+.lev3 {margin-left: 120px}
+.lev4 {margin-left: 140px}
+.lev5 {margin-left: 160px}
+.lev6 {margin-left: 180px}
+</style>
+
+<link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
+
+<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/toc2.js"></script>
+
+<script>
+$( document ).ready(function(){
+
+            var cfg={'threshold':4,     // depth of toc (number of levels)
+             'number_sections': false,  // sections numbering
+             'toc_cell': false,          // useless here
+             'toc_window_display': true, // display the toc window
+             "toc_section_display": "block", // display toc contents in the window
+             'sideBar':true,             // sidebar or floating window
+             'navigate_menu':false       // navigation menu (only in liveNotebook -- do not change)
+            }
+
+            var st={};                  // some variables used in the script
+            st.rendering_toc_cell = false;
+            st.config_loaded = false;
+            st.extension_initialized=false;
+            st.nbcontainer_marginleft = $('#notebook-container').css('margin-left')
+            st.nbcontainer_marginright = $('#notebook-container').css('margin-right')
+            st.nbcontainer_width = $('#notebook-container').css('width')
+            st.oldTocHeight = undefined
+            st.cell_toc = undefined;
+            st.toc_index=0;
+
+            // fire the main function with these parameters
+            table_of_contents(cfg,st);
+    });
+</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -11792,7 +11838,7 @@ div#notebook {
 <p><a href="http://scikit-learn.org/stable/">Scikit-learn toolkit</a> is used to train and evaluate the classifier.</p>
 <p>Prerequisities:</p>
 <ul>
-<li>Python (version 2.7.13 used in this example)</li>
+<li><a href="https://www.python.org/">Python</a> (version 2.7.13 used in this example)</li>
 <li><a href="http://www.numpy.org/">Numpy</a> (1.12.1)</li>
 <li><a href="https://www.scipy.org/">Scipy</a> (0.19.0)</li>
 <li><a href="http://scikit-learn.org/stable/">Scikit-learn</a> (0.18.1)</li>
@@ -11807,7 +11853,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Training-the-classifier">Training the classifier<a class="anchor-link" href="#Training-the-classifier">&#182;</a></h2><p>For classification, we use an <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html">extremely randomized trees</a> classifier (ERT) which was found to achieve the best performance in our experiments.</p>
+<h2 id="Training-the-classifier">Training the classifier<a class="anchor-link" href="#Training-the-classifier">&#182;</a></h2><p>For classification in this example, we use an <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html">extremely randomized trees</a> classifier (ERT) which was found to achieve the best performance in our experiments.</p>
 <p>Firstly, we define a classification pipeline that consists of a <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">feature scaler</a> and the classifier.</p>
 
 </div>
@@ -11987,7 +12033,7 @@ min samples leaf : 2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Summary of results for each parameter setting and each cross-validation fold could be stored an CSV file</p>
+<p>Summary of results for each parameter setting and each cross-validation fold could be stored to a CSV file</p>
 
 </div>
 </div>
@@ -12038,7 +12084,7 @@ min samples leaf : 2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Evaluating-the-classifier">Evaluating the classifier<a class="anchor-link" href="#Evaluating-the-classifier">&#182;</a></h2><p>The trained classifier is evaluated on the test dataset using the <a href="http://scikit-learn.org/stable/">Scikit-learn</a> toolkit again.</p>
+<h2 id="Evaluating-the-classifier">Evaluating the classifier<a class="anchor-link" href="#Evaluating-the-classifier">&#182;</a></h2><p>The trained classifier is evaluated on the UWB test dataset using the <a href="http://scikit-learn.org/stable/">Scikit-learn</a> toolkit again.</p>
 <p>The evaluation data and its targets stored in the same format as the training data is loaded.</p>
 
 </div>
